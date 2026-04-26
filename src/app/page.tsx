@@ -89,9 +89,9 @@ export default function Home() {
             priority
             sizes="100vw"
           />
-          {/* Strong dark gradient: top dim, center darkest behind text, smooth fade */}
-          <div className="absolute inset-0 bg-secondary/60" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/65 to-black/80" />
+          {/* Lighter overlay: image breathes through, text stays readable */}
+          <div className="absolute inset-0 bg-secondary/35" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/30 to-black/55" />
         </div>
         
         <div className="container relative z-10 mx-auto px-6 text-center">
