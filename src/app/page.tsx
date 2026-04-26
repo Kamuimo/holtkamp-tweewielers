@@ -101,9 +101,12 @@ export default function Home() {
             </span>
           </div>
           
-          <h1 className="hero-text text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[1.1] max-w-5xl mx-auto text-white">
+          <h1
+            className="hero-text text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[1.1] max-w-5xl mx-auto text-white"
+            style={{ textShadow: "0 2px 24px rgba(0,0,0,0.55)" }}
+          >
             <span className="block font-sans font-bold uppercase tracking-tighter">Een passende fiets is de</span>
-            <span className="block font-heading italic font-light mt-2 text-accent">enige fiets.</span>
+            <span className="block font-heading italic font-light mt-2">enige fiets.</span>
           </h1>
           
           <div className="hero-text mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center">
