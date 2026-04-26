@@ -13,16 +13,16 @@ export const metadata: Metadata = {
 export default function GebruikteFietsen() {
   // Generate 6 placeholder used bikes
   const usedBikes = [
-    { brand: "Gazelle", model: "Orange Plus", type: "Damesfiets", price: "€ 295", image: "https://images.unsplash.com/photo-1520690214124-2405c5217036?q=80&w=800&auto=format&fit=crop" },
-    { brand: "Batavus", model: "Mambo", type: "Moederfiets", price: "€ 350", image: "https://images.unsplash.com/photo-1484156818044-c040038b0719?q=80&w=800&auto=format&fit=crop" },
-    { brand: "Sparta", model: "Amzone", type: "E-bike", price: "€ 895", image: "https://images.unsplash.com/photo-1571188654248-7a89213915f7?q=80&w=800&auto=format&fit=crop" },
-    { brand: "Gazelle", model: "Chamonix", type: "Herenfiets", price: "€ 325", image: "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=800&auto=format&fit=crop" },
-    { brand: "Cortina", model: "U4 Transport", type: "Jongensfiets", price: "€ 250", image: "https://images.unsplash.com/photo-1621008018318-0a1cb0e76883?q=80&w=800&auto=format&fit=crop" },
-    { brand: "Batavus", model: "Dinsdag", type: "Damesfiets", price: "€ 450", image: "https://images.unsplash.com/photo-1593006093375-43ea23a2a7af?q=80&w=800&auto=format&fit=crop" },
+    { brand: "Gazelle", model: "Orange Plus", type: "Damesfiets", price: "€ 295", image: "/images/stock/bike-classic.jpg" },
+    { brand: "Batavus", model: "Mambo", type: "Moederfiets", price: "€ 350", image: "/images/stock/bike-vintage.jpg" },
+    { brand: "Sparta", model: "Amzone", type: "E-bike", price: "€ 895", image: "/images/stock/bike-ebike-modern.jpg" },
+    { brand: "Gazelle", model: "Chamonix", type: "Herenfiets", price: "€ 325", image: "/images/stock/bike-city.jpg" },
+    { brand: "Cortina", model: "U4 Transport", type: "Jongensfiets", price: "€ 250", image: "/images/stock/bike-detail.jpg" },
+    { brand: "Batavus", model: "Dinsdag", type: "Damesfiets", price: "€ 450", image: "/images/stock/bike-black.jpg" },
   ];
 
   return (
-    <div className="flex flex-col min-h-screen pt-20">
+    <div className="flex flex-col min-h-screen">
       <section className="bg-primary text-primary-foreground py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6">Gebruikte Fietsen</h1>
@@ -55,13 +55,14 @@ export default function GebruikteFietsen() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {usedBikes.map((bike, idx) => (
-              <Card key={idx} className="overflow-hidden border-none shadow-sm hover:shadow-md transition-shadow bg-white flex flex-col">
-                <div className="h-48 relative bg-muted">
-                  <Image 
-                    src={bike.image} 
+              <Card key={idx} className="overflow-hidden border-none shadow-sm hover:shadow-xl transition-all duration-300 bg-white flex flex-col group">
+                <div className="h-64 bg-white relative overflow-hidden">
+                  <Image
+                    src={bike.image}
                     alt={`${bike.brand} ${bike.model}`}
                     fill
-                    className="object-cover"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-primary text-xs font-bold px-3 py-1 rounded-full shadow-sm">
                     {bike.type}

@@ -16,19 +16,19 @@ export default function EBikes() {
       name: "Gazelle",
       description: "Koninklijke Gazelle uit Dieren is marktleider in Nederland en bouwt al sinds 1892 fietsen. Ze staan garant voor innovatie, comfort en een prachtig design. Een begrip in kwaliteit.",
       url: "https://www.gazelle.nl",
-      image: "https://images.unsplash.com/photo-1571188654248-7a89213915f7?q=80&w=1000&auto=format&fit=crop"
+      image: "/images/products/logo-gazelle.png"
     },
     {
       name: "Sparta",
       description: "Sparta uit Apeldoorn was de pionier. Zij introduceerden in 1998 de allereerste e-bike in Nederland en zijn sindsdien vaak bekroond door onder andere de Consumentenbond.",
       url: "https://www.sparta.nl",
-      image: "https://images.unsplash.com/photo-1621008018318-0a1cb0e76883?q=80&w=1000&auto=format&fit=crop"
+      image: "/images/products/logo-sparta.png"
     },
     {
       name: "Batavus",
       description: "Sinds 1904 produceert Batavus in Heerenveen degelijke en betrouwbare fietsen. Extra bijzonder: ze gebruiken lak op waterbasis, wat bijdraagt aan een duurzamere wereld.",
       url: "https://www.batavus.nl",
-      image: "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=1000&auto=format&fit=crop"
+      image: "/images/products/logo-batavus.png"
     }
   ];
 
@@ -39,7 +39,7 @@ export default function EBikes() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen pt-20">
+    <div className="flex flex-col min-h-screen">
       {/* Hero */}
       <section className="bg-primary text-primary-foreground py-20">
         <div className="container mx-auto px-4 text-center">
@@ -56,8 +56,14 @@ export default function EBikes() {
           <div className="space-y-16">
             {brands.map((brand, idx) => (
               <div key={brand.name} className={`flex flex-col ${idx % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} gap-8 md:gap-16 items-center`}>
-                <div className="w-full md:w-1/2 relative h-[300px] md:h-[400px] rounded-2xl overflow-hidden shadow-lg">
-                  <Image src={brand.image} alt={`${brand.name} e-bike`} fill className="object-cover" />
+                <div className="w-full md:w-1/2 relative h-[300px] md:h-[400px] rounded-2xl overflow-hidden shadow-sm bg-white border border-border group">
+                  <Image
+                    src={brand.image}
+                    alt={`${brand.name} logo`}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-contain p-12 transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
                 <div className="w-full md:w-1/2">
                   <h2 className="text-3xl font-heading font-bold text-primary mb-4">{brand.name}</h2>
@@ -81,14 +87,14 @@ export default function EBikes() {
           <h2 className="text-3xl font-heading font-bold text-center text-primary mb-12">Populaire Modellen</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {models.map((model, idx) => (
-              <Card key={idx} className="overflow-hidden border-none shadow-md hover:shadow-lg transition-shadow bg-white">
-                <div className="h-48 bg-muted relative">
-                  {/* Placeholder image representation */}
-                  <Image 
-                    src="https://images.unsplash.com/photo-1593006093375-43ea23a2a7af?q=80&w=800&auto=format&fit=crop" 
+              <Card key={idx} className="overflow-hidden border-none shadow-md hover:shadow-xl transition-all duration-300 bg-white group">
+                <div className="h-64 bg-white relative overflow-hidden">
+                  <Image
+                    src={["/images/products/gazelle-grenoble-c8-hmb.png","/images/products/sparta-a-shine-energy.webp","/images/products/batavus-finez-e-go-power.png"][idx]}
                     alt={model.name}
                     fill
-                    className="object-cover"
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="object-contain p-6 transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute top-4 right-4 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full">
                     {model.tag}

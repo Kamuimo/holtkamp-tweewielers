@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 import { Metadata } from "next";
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function Contact() {
   return (
-    <div className="flex flex-col min-h-screen pt-20">
+    <div className="flex flex-col min-h-screen">
       <section className="bg-primary text-primary-foreground py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6">Contact & Route</h1>
@@ -90,7 +91,9 @@ export default function Contact() {
               <div className="bg-white p-8 md:p-12 rounded-3xl shadow-lg border">
                 <h2 className="text-3xl font-heading font-bold text-primary mb-2">Stuur een bericht</h2>
                 <p className="text-muted-foreground mb-8">Wij proberen uw vraag zo snel mogelijk te beantwoorden.</p>
-                <ContactForm />
+                <Suspense fallback={<div className="h-64 flex items-center justify-center text-muted-foreground">Formulier laden...</div>}>
+                  <ContactForm />
+                </Suspense>
               </div>
             </div>
 

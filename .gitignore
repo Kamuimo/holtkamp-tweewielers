@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local Claude harness config (per-machine)
+/.claude/
+
+# Source image originals (used copies live in public/images/)
+/images/

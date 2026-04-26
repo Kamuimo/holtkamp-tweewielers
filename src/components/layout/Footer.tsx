@@ -1,72 +1,58 @@
+'use client';
+
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 export function Footer() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    // Check if werkplaats is geopend
+    // Di-Vr 08:00 - 18:00, Za 08:00 - 16:00
+    const checkOpen = () => {
+      const now = new Date();
+      const day = now.getDay();
+      const hour = now.getHours();
+
+      if (day >= 2 && day <= 5) {
+        if (hour >= 8 && hour < 18) setIsOpen(true);
+        else setIsOpen(false);
+      } else if (day === 6) {
+        if (hour >= 8 && hour < 16) setIsOpen(true);
+        else setIsOpen(false);
+      } else {
+        setIsOpen(false);
+      }
+    };
+    checkOpen();
+    const interval = setInterval(checkOpen, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <footer className="bg-primary text-primary-foreground">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="font-heading font-bold text-2xl mb-4 text-secondary">
-              Holtkamp Tweewielers
-            </h3>
-            <p className="mb-2">Oldenzaalsestraat 135</p>
-            <p className="mb-4">7557 GJ Hengelo (Ov)</p>
-            <p className="mb-1">
-              Tel.: <a href="tel:0742913735" className="hover:text-secondary transition-colors">074-291 37 35</a>
-            </p>
-            <p>
-              E-mail:{' '}
-              <a
-                href="mailto:info@holtkamptweewielers.nl"
-                className="hover:text-secondary transition-colors"
-              >
-                info@holtkamptweewielers.nl
-              </a>
-            </p>
-          </div>
-          <div>
-            <h4 className="font-heading font-bold text-lg mb-4 text-secondary">
-              Openingstijden
-            </h4>
-            <ul className="space-y-2">
-              <li className="flex justify-between">
-                <span>Zondag & Maandag</span>
-                <span className="text-primary-foreground/70">Gesloten</span>
-              </li>
-              <li className="flex justify-between">
-                <span>Dinsdag t/m Vrijdag</span>
-                <span>08.00 - 18.00</span>
-              </li>
-              <li className="flex justify-between">
-                <span>Zaterdag</span>
-                <span>08.00 - 16.00</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-heading font-bold text-lg mb-4 text-secondary">
-              Snel naar
-            </h4>
-            <ul className="space-y-2 flex flex-col">
-              <li>
-                <Link href="/over-ons" className="hover:text-secondary transition-colors">Over ons</Link>
-              </li>
-              <li>
-                <Link href="/e-bikes" className="hover:text-secondary transition-colors">E-bikes</Link>
-              </li>
-              <li>
-                <Link href="/fietsen" className="hover:text-secondary transition-colors">Stadsfietsen</Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-secondary transition-colors">Contact</Link>
-              </li>
-            </ul>
-          </div>
+    <footer className="bg-background text-foreground border-t border-border/40 py-12 px-6">
+      <div className="container mx-auto flex flex-col items-center text-center space-y-6">
+        
+        <h3 className="font-heading italic font-bold text-3xl tracking-tight text-foreground">
+          Holtkamp
+        </h3>
+        
+        <div className="font-sans text-sm text-foreground/80 space-y-2">
+          <p>Holtkamp Tweewielers · Oldenzaalsestraat 135, 7557 GJ Hengelo (Ov)</p>
+          <p>
+            <a href="tel:0742913735" className="hover:text-primary transition-colors">074-291 37 35</a> · 
+            <a href="mailto:info@holtkamptweewielers.nl" className="hover:text-primary transition-colors ml-1">info@holtkamptweewielers.nl</a>
+          </p>
+          <p className="text-foreground/60">Di–Vr 08.00–18.00 · Za 08.00–16.00 · Zo & Ma gesloten</p>
         </div>
-        <div className="mt-12 pt-8 border-t border-primary-foreground/20 flex flex-col md:flex-row justify-between items-center text-sm text-primary-foreground/70">
-          <p>© 2026 Holtkamp Tweewielers Hengelo. Alle rechten voorbehouden.</p>
-          <p className="mt-2 md:mt-0">BTW nr.: NL 801961543B01</p>
+
+        <div className="flex items-center gap-3 mt-4 px-4 py-2 bg-secondary/10 rounded-full border border-secondary/20">
+          <div className={`w-2.5 h-2.5 rounded-full ${isOpen ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`} />
+          <span className="font-mono text-xs uppercase tracking-widest text-foreground/80">
+            {isOpen ? 'Werkplaats geopend' : 'Werkplaats gesloten'}
+          </span>
         </div>
+
       </div>
     </footer>
   );

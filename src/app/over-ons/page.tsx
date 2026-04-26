@@ -26,7 +26,7 @@ export default function OverOns() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen pt-20">
+    <div className="flex flex-col min-h-screen">
       {/* Hero */}
       <section className="bg-primary text-primary-foreground py-20">
         <div className="container mx-auto px-4 text-center">
@@ -40,12 +40,13 @@ export default function OverOns() {
       {/* Intro & Generations */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4 flex flex-col lg:flex-row gap-16 items-center">
-          <div className="lg:w-1/2 relative h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl">
+          <div className="lg:w-1/2 relative h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl bg-muted group">
             <Image
-              src="https://images.unsplash.com/photo-1511994298241-608e28f14fde?q=80&w=2000&auto=format&fit=crop"
-              alt="Oude fietsenwinkel of werkplaats"
+              src="/images/winkel-portret.jpg"
+              alt="Werkplaats van Holtkamp Tweewielers"
               fill
-              className="object-cover"
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
             />
           </div>
           <div className="lg:w-1/2">

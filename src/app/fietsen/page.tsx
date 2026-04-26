@@ -16,19 +16,19 @@ export default function Fietsen() {
       name: "Gazelle",
       description: "Gazelle stadsfietsen zijn al generaties lang een icoon in het Nederlandse straatbeeld. Lichtgewicht, extreem comfortabel en vrijwel onderhoudsvrij.",
       url: "https://www.gazelle.nl",
-      image: "https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?q=80&w=1000&auto=format&fit=crop"
+      image: "/images/products/logo-gazelle.png"
     },
     {
       name: "Batavus",
       description: "Een Batavus stadsfiets is gemaakt voor het Hollandse weer. Robuust, betrouwbaar en voorzien van slimme, veilige verlichting. Perfect voor dagelijks gebruik.",
       url: "https://www.batavus.nl",
-      image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1000&auto=format&fit=crop"
+      image: "/images/products/logo-batavus.png"
     },
     {
       name: "Sparta",
       description: "Naast e-bikes blinkt Sparta ook uit in stevige transportfietsen en stoere stadsfietsen. Ideaal voor het zware werk, zoals boodschappen of schooltassen.",
       url: "https://www.sparta.nl",
-      image: "https://images.unsplash.com/photo-1520690214124-2405c5217036?q=80&w=1000&auto=format&fit=crop"
+      image: "/images/products/logo-sparta.png"
     }
   ];
 
@@ -52,7 +52,7 @@ export default function Fietsen() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen pt-20">
+    <div className="flex flex-col min-h-screen">
       {/* Hero */}
       <section className="bg-primary text-primary-foreground py-20">
         <div className="container mx-auto px-4 text-center">
@@ -69,8 +69,14 @@ export default function Fietsen() {
           <div className="space-y-16">
             {brands.map((brand, idx) => (
               <div key={brand.name} className={`flex flex-col ${idx % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} gap-8 md:gap-16 items-center`}>
-                <div className="w-full md:w-1/2 relative h-[300px] md:h-[400px] rounded-2xl overflow-hidden shadow-lg">
-                  <Image src={brand.image} alt={`${brand.name} stadsfiets`} fill className="object-cover" />
+                <div className="w-full md:w-1/2 relative h-[300px] md:h-[400px] rounded-2xl overflow-hidden shadow-sm bg-white border border-border group">
+                  <Image
+                    src={brand.image}
+                    alt={`${brand.name} logo`}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-contain p-12 transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
                 <div className="w-full md:w-1/2">
                   <h2 className="text-3xl font-heading font-bold text-primary mb-4">{brand.name}</h2>
@@ -94,13 +100,14 @@ export default function Fietsen() {
           <h2 className="text-3xl font-heading font-bold text-center text-primary mb-12">Uitgelichte Stadsfietsen</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {models.map((model, idx) => (
-              <Card key={idx} className="overflow-hidden border-none shadow-md hover:shadow-lg transition-shadow bg-white">
-                <div className="h-48 bg-muted relative">
-                  <Image 
-                    src="https://images.unsplash.com/photo-1484156818044-c040038b0719?q=80&w=800&auto=format&fit=crop" 
+              <Card key={idx} className="overflow-hidden border-none shadow-md hover:shadow-xl transition-all duration-300 bg-white group">
+                <div className="h-64 bg-white relative overflow-hidden">
+                  <Image
+                    src={["/images/products/gazelle-esprit-c7.png","/images/products/batavus-dinsdag.png","/images/products/sparta-pickup.png"][idx]}
                     alt={model.name}
                     fill
-                    className="object-cover"
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="object-contain p-6 transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute top-4 right-4 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full">
                     {model.tag}
