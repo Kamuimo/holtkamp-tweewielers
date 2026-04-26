@@ -42,8 +42,8 @@ export default function OverOns() {
         <div className="container mx-auto px-4 flex flex-col lg:flex-row gap-16 items-center">
           <div className="lg:w-1/2 relative h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl bg-muted group">
             <Image
-              src="/images/winkel-portret.jpg"
-              alt="Werkplaats van Holtkamp Tweewielers"
+              src="/images/storefront.webp"
+              alt="Winkelpui van Holtkamp Tweewielers aan de Oldenzaalsestraat in Hengelo"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
